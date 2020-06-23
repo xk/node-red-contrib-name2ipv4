@@ -12,12 +12,16 @@ module.exports= function(RED) {
 
         node.on('input', function (msg) {
 
-            var cb= function (err, addresses) {
-              if (err) node.error(err, msg);
-              else {
-                msg.payload= {ip:addresses};
-                node.send(msg);
-              }
+            var cb= function (err, ips) {
+              var r= {
+                ok:(!err),
+                domain:domain,
+                ip:"",
+                error:err
+              };
+              if (ips && ips[0]) r.ip= ips[0];
+              msg.payload= r;
+              node.send(msg);
             };
 
             //Si msg.payload contiene domain_name es usa msg.payload.domain_name
@@ -40,7 +44,7 @@ module.exports= function(RED) {
             else err= "invalid domain name";
 
             if (err) {
-
+              setTimeout(function () { cb(err, []); }, 0);
             }
             else dns.resolve4(domain, cb);
         });

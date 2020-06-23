@@ -19,11 +19,13 @@
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-globe"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="">
-        <label for="node-input-domain_name"><i class="fa fa-globe"></i> Domain Name</label>
+        <label for="node-input-domain_name"><i class="fa fa-globe"></i> domain_name</label>
         <input type="text" id="node-input-domain_name" placeholder="example.com">
     </div>
 </script>
 
 <script type="text/html" data-help-name="name2ipv4">
-    <p>(v1.0.4) Returns the ip of a domain name. {ip:"a.b.c.d"}</p>
+    <p>name2ipv4(v1.0.5) Returns the ip of a domain name.</p>
+    <p>input: msg.payload.domain_name || config.domain_name</p>
+    <p>output: msg.payload={ok:bool, domain:domain, ip:ip, error:error}</p>
 </script>
