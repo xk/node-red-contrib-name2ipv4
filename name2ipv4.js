@@ -43,9 +43,7 @@ module.exports= function(RED) {
 
             }
             else dns.resolve4(domain, cb);
-
-            return msg;
         });
     }
-    RED.nodes.registerType("dns", name2ipv4);
+    RED.nodes.registerType("name2ipv4", name2ipv4);
 };
