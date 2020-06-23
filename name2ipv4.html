@@ -1,0 +1,27 @@
+<script>
+    RED.nodes.registerType('name2ip4',{
+        category: 'dns',
+        color: '#a6bbcf',
+        defaults: {
+          name: {value:""},
+          domain_name: {value:"example.com"},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name || "name2ip4";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="name2ip4">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-globe"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="name2ip4">
+    <p>Returns the ip of a domain name. {ip:"a.b.c.d"}</p>
+</script>
