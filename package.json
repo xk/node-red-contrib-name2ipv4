@@ -1,15 +1,30 @@
 {
-    "name"         : "node-red-contrib-name2ipv4",
-    "version"      : "1.0.0",
-    "description"  : "Returns the ipv4 of a domain name.",
-    "author"       : "xk <jorge@jorgechamorro.com>",
-    "dependencies": {
-      "dns": "*"
-    },
-    "keywords": [ "node-red" ],
-    "node-red"     : {
-        "nodes": {
-            "name2ipv4": "name2ipv4.js"
-        }
+  "name": "node-red-contrib-name2ipv4",
+  "version": "1.0.1",
+  "description": "Returns the ipv4 of a domain name.",
+  "author": "xk <jorge@jorgechamorro.com>",
+  "dependencies": {
+    "dns": "*"
+  },
+  "keywords": [
+    "node-red"
+  ],
+  "node-red": {
+    "nodes": {
+      "name2ipv4": "name2ipv4.js"
     }
+  },
+  "main": "name2ipv4.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xk/node-red-contrib-name2ipv4.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xk/node-red-contrib-name2ipv4/issues"
+  },
+  "homepage": "https://github.com/xk/node-red-contrib-name2ipv4#readme"
 }

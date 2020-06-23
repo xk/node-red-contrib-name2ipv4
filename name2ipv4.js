@@ -5,7 +5,7 @@ module.exports= function(RED) {
     "use strict";
     var dns= require("dns");
 
-    function name2ip4 (config) {
+    function name2ipv4 (config) {
 
         RED.nodes.createNode(this, config);
         var node= this;
@@ -47,5 +47,5 @@ module.exports= function(RED) {
             return msg;
         });
     }
-    RED.nodes.registerType("dns", name2ip4);
+    RED.nodes.registerType("dns", name2ipv4);
 };
