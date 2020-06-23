@@ -12,7 +12,7 @@ module.exports= function(RED) {
 
         node.on('input', function (msg) {
 
-            var cb= function (err, ips) {
+            function cb (err, ips) {
               var r= {
                 ok:(!err),
                 domain:domain,
@@ -24,7 +24,7 @@ module.exports= function(RED) {
               node.send(msg);
             };
 
-            //Si msg.payload contiene domain_name es usa msg.payload.domain_name
+            //Si msg.payload contiene domain_name se usa msg.payload.domain_name
             //Si no, se intenta usar config.domain_name
 
             var err;

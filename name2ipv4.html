@@ -4,7 +4,7 @@
         color: '#a6bbcf',
         defaults: {
           name: {value:""},
-          domain_name: {value:"example.com"},
+          domain_name: {value:""},
         },
         inputs:1,
         outputs:1,
@@ -25,7 +25,7 @@
 </script>
 
 <script type="text/html" data-help-name="name2ipv4">
-    <p>name2ipv4(v1.0.5) Returns the ip of a domain name.</p>
+    <p>name2ipv4(v1.0.6) Returns the ip of a domain name.</p>
     <p>input: msg.payload.domain_name || config.domain_name</p>
     <p>output: msg.payload={ok:bool, domain:domain, ip:ip, error:error}</p>
 </script>
