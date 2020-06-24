@@ -1,14 +1,15 @@
 <script type="text/javascript">
-    RED.nodes.registerType('name2ipv4',{
+    RED.nodes.registerType('name2ipv4', {
         category: 'dns',
         color: '#a6bbcf',
         defaults: {
-          name: {value:""},
-          domain_name: {value:""},
+          name:           {value:""},
+          domain_name:    {value:""},
+          dns_ip:         {value:""}
         },
         inputs:1,
         outputs:1,
-        icon: "file.png",
+        icon: "white-globe.png",
         label: function() {
             return this.name || "name2ipv4";
         }
@@ -17,15 +18,25 @@
 
 <script type="text/html" data-template-name="name2ipv4">
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-globe"></i> Name</label>
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="">
-        <label for="node-input-domain_name"><i class="fa fa-globe"></i> domain_name</label>
+    </div>
+    <hr>
+    <div class="form-row">
+        <p>Enter the domain name:</p>
+        <label for="node-input-domain_name"><i class="fa fa-globe"></i> Name</label>
         <input type="text" id="node-input-domain_name" placeholder="example.com">
+    </div>
+    <hr>
+    <div class="form-row">
+        <p>Use this DNS server IP: (Leave empty to use the default DNS)</p>
+        <label for="node-input-dns_ip"><i class="fa fa-globe"></i> DNS</label>
+        <input type="text" id="node-input-dns_ip" placeholder="0.0.0.0">
     </div>
 </script>
 
 <script type="text/html" data-help-name="name2ipv4">
-    <p>name2ipv4(v1.0.6) Returns the ip of a domain name.</p>
+    <p>name2ipv4(v1.0.7) Returns the ip of a domain name.</p>
     <p>input: msg.payload.domain_name || config.domain_name</p>
-    <p>output: msg.payload={ok:bool, domain:domain, ip:ip, error:error}</p>
+    <p>output: msg.payload= {ok:bool, domain:domain, ip:ip, error:error, dns_ip:ip}</p>
 </script>

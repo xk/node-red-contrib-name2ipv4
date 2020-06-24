@@ -4,11 +4,26 @@ module.exports= function(RED) {
 
     "use strict";
     var dns= require("dns");
+    var initial_dns_ip= dns.getServers()[0];
 
     function name2ipv4 (config) {
 
         RED.nodes.createNode(this, config);
         var node= this;
+        var now_using_dns_ip= dns.getServers()[0];
+
+        function validar_ip (ip) {
+          var r= ip.split(".");
+          if (r.length !== 4) return "";
+          r= r.filter(function(v,i,o) {
+            var n= Math.floor(+v);
+            if (v !== (""+n)) return false;
+            if ((n<0) || (n>255)) return false;
+            return true;
+          });
+          if (r.length !== 4) return "";
+          else return r.join(".");
+        }
 
         node.on('input', function (msg) {
 
@@ -17,7 +32,8 @@ module.exports= function(RED) {
                 ok:(!err),
                 domain:domain,
                 ip:"",
-                error:err
+                error:err,
+                dns_ip: now_using_dns_ip
               };
               if (ips && ips[0]) r.ip= ips[0];
               msg.payload= r;
@@ -45,8 +61,27 @@ module.exports= function(RED) {
 
             if (err) {
               setTimeout(function () { cb(err, []); }, 0);
+              return;
             }
-            else dns.resolve4(domain, cb);
+
+            if (config.dns_ip) {
+              if (typeof config.dns_ip === "string") {
+                var dns_ip= validar_ip(config.dns_ip);
+                if (dns_ip) {
+                  if (dns_ip !== now_using_dns_ip) {
+                    dns.setServers([ dns_ip ]);
+                    now_using_dns_ip= dns_ip;
+                  }
+                }
+              }
+            }
+            else if (now_using_dns_ip !== initial_dns_ip) {
+              dns.setServers([ initial_dns_ip ]);
+              now_using_dns_ip= initial_dns_ip;
+            }
+
+            //config.dns_ip= dns.getServers()[0];
+            dns.resolve4(domain, cb);
         });
     }
     RED.nodes.registerType("name2ipv4", name2ipv4);
