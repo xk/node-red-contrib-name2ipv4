@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-name2ipv4",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Returns the ipv4 of a domain name.",
   "author": "xk <jorge@jorgechamorro.com>",
   "dependencies": {
