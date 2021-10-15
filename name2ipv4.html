@@ -36,7 +36,8 @@
 </script>
 
 <script type="text/html" data-help-name="name2ipv4">
-    <p>name2ipv4(v1.0.7) Returns the ip of a domain name.</p>
+    <p>name2ipv4(v1.0.8) Returns the ip v4 of a domain name.</p>
     <p>input: msg.payload.domain_name || config.domain_name</p>
-    <p>output: msg.payload= {ok:bool, domain:domain, ip:ip, error:error, dns_ip:ip}</p>
+    <p>input: msg.payload.dns_ip || config.dns_ip || ""</p>
+    <p>output: msg.payload= {ok:boolean, error:error, dns_ip:ip, domain:domain, ip:ip}</p>
 </script>
